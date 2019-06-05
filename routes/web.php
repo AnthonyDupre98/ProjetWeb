@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/inscription', 'InscriptionController@formulaire');
+Route::post('/inscription', 'InscriptionController@traitement');
+
+Route::get('/utilisateurs', 'UtilisateursController@liste');
