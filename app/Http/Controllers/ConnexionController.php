@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 class ConnexionController extends Controller
 {
     public function formulaire(){
-    	return view('connexion');
+    	if (auth()->guest()){
+        return view('connexion');
+        }
+        flash("Vous êtes déjà connecté(e).")->warning();
+        return redirect('mon-compte');
     }
 
     public function traitement(){
@@ -22,7 +26,7 @@ class ConnexionController extends Controller
     	]);
 
     	if($resultat){
-            flash('Vous êtes maintenant connecté.')->success();
+            flash('Vous êtes maintenant connecté(e).')->success();
     		return redirect('/mon-compte');
     	}
 

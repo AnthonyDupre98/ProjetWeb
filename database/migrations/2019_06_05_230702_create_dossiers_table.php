@@ -15,9 +15,10 @@ class CreateDossiersTable extends Migration
     {
         Schema::create('dossiers', function (Blueprint $table) {
             $table->bigIncrements('idDossier');
-            $table->integer('idUtilisateur');
-            $table->string('resultatBac');
-            $table->string('carteDidentite');
+            $table->integer('idUtilisateur')->unique();
+            $table->string('resultatBac')->nullable();
+            $table->string('carteDidentite')->nullable();
+            $table->string('etatDossier');
             $table->timestamps();
         });
     }

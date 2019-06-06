@@ -2,7 +2,7 @@
 
 @section('contenu')
 	<div class="notification">
-		<h1 class="title is-l">Formulaire d'inscription</h1>
+		<h1>Formulaire d'inscription</h1>
 	    <form action="/inscription" method="post" class="section">
 	    	{{ csrf_field() }}
 			<div class="field">

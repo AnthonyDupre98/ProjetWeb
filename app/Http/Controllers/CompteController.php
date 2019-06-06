@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Utilisateur;
 
 class CompteController extends Controller
 {
     public function accueil(){
-    	return view('mon-compte');
+
+        $utilisateur = Utilisateur::where('idUtilisateur', auth()->user()->idUtilisateur)->firstOrFail();
+    	
+        return view('mon-compte' , [
+            'utilisateur' => $utilisateur,
+        ]);
     }
 
     public function deconnexion(){
     	auth()->logout();
-    	flash('Vous êtes maintenant déconnecté.')->success();
+    	flash('Vous êtes maintenant déconnecté(e).')->success();
     	return redirect('/');
     }
 
@@ -28,6 +34,6 @@ class CompteController extends Controller
 
     	flash('Votre mot de passe a bien été mis à jour')->success();
 
-    	return redirect('/mon-compte');
+    	return back();
     }
 }

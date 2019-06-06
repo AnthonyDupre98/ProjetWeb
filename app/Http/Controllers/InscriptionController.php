@@ -7,7 +7,11 @@ use App\Utilisateur;
 class InscriptionController extends Controller
 {
     public function formulaire(){
+    	if (auth()->guest()){
     	return view('inscription');
+    	}
+    	flash("Vous êtes déjà connecté(e)")->warning();
+    	return redirect('mon-compte');
     }
 
     public function traitement(){

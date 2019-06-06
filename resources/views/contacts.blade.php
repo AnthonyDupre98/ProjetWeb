@@ -2,7 +2,7 @@
 
 @section('contenu')
     <div class="section">
-        <h1 class="title is-l">Canditature</h1>
+        <h1 class="title is-l">Contacts</h1>
 		<div class="box">
 				<div class="media">
 					<figure class="image is-64x64">
