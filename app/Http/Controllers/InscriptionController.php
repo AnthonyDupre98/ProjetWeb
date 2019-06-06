@@ -33,6 +33,6 @@ class InscriptionController extends Controller
 	'codePostal' => request('codepostal'),
 	'mel' => request('email'),
 	'motDePasse' => bcrypt(request('password'))]);
-    return 'Formulaire reçu';
+    return redirect('/connexion');
     }
 }

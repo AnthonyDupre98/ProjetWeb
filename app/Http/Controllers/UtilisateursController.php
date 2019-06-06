@@ -10,8 +10,18 @@ class UtilisateursController extends Controller
     {
     	$utilisateurs = Utilisateur::all();
 
-	return view('utilisateurs', [
-		'utilisateurs'=> $utilisateurs,
-	]);
+		return view('utilisateurs', [
+			'utilisateurs'=> $utilisateurs,
+		]);
+    }
+
+    public function voirDossier(){
+    	$mel = request('mel');
+
+    	$utilisateur = Utilisateur::where('mel', $mel)->first();
+
+    	return view('dossier', [
+    		'utilisateur' => $utilisateur,
+    	]);
     }
 }
