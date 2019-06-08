@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as BasicAuthenticatable;
 
-class Administrateur extends Model
-{
+class Administrateur extends Model implements Authenticatable{
+
+	use BasicAuthenticatable;
+	
 	protected $primaryKey ='idAdmin';
 
 	protected $fillable = ['prenomAdmin','nomAdmin','dateNaissance','genre', 'villeNaissance', 'adresseActuelle', 'codePostal', 'mel', 'motDePasse', 'superAdmin'];

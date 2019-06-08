@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Auth
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,8 @@ class Auth
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->guest()){
-            flash("Vous devez être connecté en tant qu'utilisateur pour voir cette page.")->error();
+        if (!auth()->guard('admin')->check()){
+            flash("Vous devez être connecté en tant qu'administrateur pour voir cette page.")->error();
             return redirect('/connexion');
         }
         return $next($request);

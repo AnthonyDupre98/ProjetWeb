@@ -3,13 +3,15 @@
 @section('contenu')
     <div class="notification">
         <div class="section">
-            <h1>Les utilisateurs</h1>
+            <h1>Liste des utilisateurs</h1>
+            </br>
             <table class="table" id="myTable">
                 <thead>
                     <tr>
                         <th onclick="sortTable(0)">Nom</th>
                         <th onclick="sortTable(1)">Prénom</th>
                         <th onclick="sortTable(2)">E-mail</th>
+                        <th onclick="sortTable(3)">État du dossier</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -17,17 +19,25 @@
                         <th onclick="sortTable(0)">Nom</th>
                         <th onclick="sortTable(1)">Prénom</th>
                         <th onclick="sortTable(2)">E-mail</th>
+                        <th onclick="sortTable(3)">État du dossier</th>
                     </tr>
                 </tfoot>
                 <tbody>
+                    <p hidden>{{ $i = 0 }}</p>
                     @foreach($utilisateurs as $utilisateur)
                     <tr>
-                        
                         <td>{{ $utilisateur -> nomUtilisateur }}</td>
                         <td>{{ $utilisateur -> prenomUtilisateur }}</td>
-                        <td><a href="/utilisateur/{{ $utilisateur -> mel }}">{{ $utilisateur -> mel }}</a></td>
-                        
+                        <td><a href="/candidature/{{ $utilisateur -> mel }}">{{ $utilisateur -> mel }}</a></td>
+                        <td>
+                            @if($dossiers[$i] === null)
+                                Vide
+                            @else
+                                {{ $dossiers[$i]->etatDossier }}
+                            @endif
+                        </td>
                     </tr>
+                    <p hidden>{{ $i += 1 }}</p>
                     @endforeach
                 </tbody>
             </table>

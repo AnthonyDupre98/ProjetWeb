@@ -25,16 +25,31 @@ Route::post('/inscription', 'InscriptionController@traitement');
 Route::get('/connexion', 'ConnexionController@formulaire');
 Route::post('/connexion', 'ConnexionController@traitement');
 
-Route::get('/utilisateurs', 'UtilisateursController@liste');
+Route::group([
+	'middleware' => 'App\Http\Middleware\Admin',
+], function(){
+	Route::get('/mon-compte-admin', 'CompteController@compteAdmin');
+	Route::get('/deconnexion-admin', 'CompteController@deconnexionAdmin');
+	Route::post('/modification-mot-de-passe', 'CompteController@modificationMotDePasse');
+
+	Route::get('/utilisateurs', 'UtilisateursController@liste');
+
+	Route::get('/candidature/{mel}', 'DossierController@candidature');
+});
 
 Route::group([
 	'middleware' => 'App\Http\Middleware\Auth',
 ], function(){
-	Route::get('/mon-compte', 'CompteController@accueil');
+	Route::get('/mon-compte', 'CompteController@compte');
 	Route::get('/deconnexion', 'CompteController@deconnexion');
 	Route::post('/modification-mot-de-passe', 'CompteController@modificationMotDePasse');
 	
+	Route::get('/{mel}', 'DossierController@voirDossier');
 	Route::post('/{mel}', 'DossierController@dossier');
+	Route::delete('/{mel}', 'DossierController@supprimer');
 });
 
-Route::get('/{mel}', 'UtilisateursController@voirDossier');
+
+
+
+

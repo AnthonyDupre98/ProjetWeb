@@ -10,6 +10,8 @@ class Utilisateur extends Model implements Authenticatable{
 
 	use BasicAuthenticatable;
 
+	protected $guard = 'admin';
+
 	protected $primaryKey ='idUtilisateur';
 
 	protected $fillable = ['prenomUtilisateur','nomUtilisateur','dateNaissance','genre', 'villeNaissance', 'adresseActuelle', 'codePostal', 'mel', 'motDePasse'];

@@ -4,14 +4,15 @@
     <div class="notification">
         <h1>Mon compte</h1>
         <div class="section">
-                <p>Adresse e-mail : {{$utilisateur->mel}}</p>
-                <p>Nom : {{$utilisateur->nomUtilisateur}}</p>
-                <p>Prénom: {{$utilisateur->prenomUtilisateur}}</p>
-                <p>Date de naissance: {{$utilisateur->dateNaissance}}</p>
-                <p>Genre : {{$utilisateur->genre}}</p>
-                <p>Ville de naissance : {{$utilisateur->villeNaissance}}</p>
-                <p>Adresse actuelle : {{$utilisateur->adresseActuelle}}</p>
-                <p>Code postal : {{$utilisateur->codePostal}}</p>
+                <p>Adresse e-mail : {{$admininistrateur->mel}}</p>
+                <p>Nom : {{$admininistrateur->nomAdmin}}</p>
+                <p>Prénom: {{$admininistrateur->prenomAdmin}}</p>
+                <p>Date de naissance: {{$admininistrateur->dateNaissance}}</p>
+                <p>Genre : {{$admininistrateur->genre}}</p>
+                <p>Ville de naissance : {{$admininistrateur->villeNaissance}}</p>
+                <p>Adresse actuelle : {{$admininistrateur->adresseActuelle}}</p>
+                <p>Code postal : {{$admininistrateur->codePostal}}</p>
+                <p>SuperAdmin : {{$admininistrateur->superAdmin}}</p>
         </div>
         <h1>Changer mon mot de passe</h1>
         <div class="section">

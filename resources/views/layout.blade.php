@@ -30,14 +30,18 @@
                         <div id="navbarMenuHeroA" class="navbar-menu">
                             <div class="navbar-end">
                                 @include('partials.navbar-item', ['lien' => '/', 'texte' => 'Accueil'])
-                                @auth
+                                @if (auth()->guard('admin')->check())
+                                    @include('partials.navbar-item', ['lien' => 'mon-compte-admin', 'texte' => 'Mon Compte'])
+                                    @include('partials.navbar-item', ['lien' => 'utilisateurs', 'texte' => 'Utilisateurs'])
+                                    @include('partials.navbar-item', ['lien' => 'deconnexion-admin', 'texte' => 'Déconnexion'])
+                                @elseif (auth()->check())
                                     @include('partials.navbar-item', ['lien' => 'mon-compte', 'texte' => 'Mon Compte'])
                                     @include('partials.navbar-item', ['lien' => auth()->user()->mel, 'texte' => 'Mon Dossier'])
                                     @include('partials.navbar-item', ['lien' => 'deconnexion', 'texte' => 'Déconnexion'])
                                 @else
                                     @include('partials.navbar-item', ['lien' => 'connexion', 'texte' => 'Se connecter'])
                                     @include('partials.navbar-item', ['lien' => 'inscription', 'texte' => "S'inscrire"])
-                                @endauth
+                                @endif
                                 
                                 <span class="navbar-item">
                                     <a class="button is-primary is-inverted" href="http://www.polytech-reseau.org/index.php?id=2">

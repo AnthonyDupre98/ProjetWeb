@@ -37,6 +37,8 @@ class InscriptionController extends Controller
 	'codePostal' => request('codepostal'),
 	'mel' => request('email'),
 	'motDePasse' => bcrypt(request('password'))]);
+	
+	flash('Votre compte a été créé !')->success();
     return redirect('/connexion');
     }
 }

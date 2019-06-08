@@ -25,10 +25,18 @@ class ConnexionController extends Controller
     		'password' => request('password'),
     	]);
 
+        $resultat2 = auth()->guard('admin')->attempt([
+            'mel' => request('email'),
+            'password' => request('password'),
+        ]);
+
     	if($resultat){
             flash('Vous êtes maintenant connecté(e).')->success();
     		return redirect('/mon-compte');
-    	}
+    	}elseif ($resultat2){
+            flash('Vous êtes maintenant connecté(e).')->success();
+            return redirect('/mon-compte-admin');
+        }
 
     	return back()->withInput()->withErrors([
     		'email' => 'Vos identifiants sont incorrects.'
