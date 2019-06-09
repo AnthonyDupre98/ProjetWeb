@@ -65,26 +65,39 @@
     		</div>
     	</form>
         @if($dossier != null)
-			<form action="/candidature/supprimer/{{$utilisateur->mel}}" method="post" class="section">
-				@method("patch")
-				{{ csrf_field() }}
-				<div class="field">
-	    			<div class="control">
-	    				<input type="hidden" name="mel" value="{{$utilisateur->mel}}">
-						<button class="button is-danger is-big" type="submit">Supprimer ce dossier</button>
-					</div>
-	    		</div>
-			</form>
-			<form action="/candidature/refuser/{{$utilisateur->mel}}" method="post" class="section">
-				@method("patch")
-				{{ csrf_field() }}
-				<div class="field">
-	    			<div class="control">
-	    				<input type="hidden" name="mel" value="{{$utilisateur->mel}}">
-						<button class="button is-danger is-big" type="submit">Refuser ce dossier</button>
-					</div>
-	    		</div>
-			</form>
+			@if($dossier->etatDossier === "En cours d'instruction")
+				<form action="/candidature/supprimer/{{$utilisateur->mel}}" method="post" class="section">
+					@method("patch")
+					{{ csrf_field() }}
+					<div class="field">
+		    			<div class="control">
+		    				<input type="hidden" name="mel" value="{{$utilisateur->mel}}">
+							<button class="button is-danger is-big" type="submit">Supprimer ce dossier</button>
+						</div>
+		    		</div>
+				</form>
+				<form action="/candidature/refuser/{{$utilisateur->mel}}" method="post" class="section">
+					@method("patch")
+					{{ csrf_field() }}
+					<div class="field">
+		    			<div class="control">
+		    				<input type="hidden" name="mel" value="{{$utilisateur->mel}}">
+							<button class="button is-danger is-big" type="submit">Refuser ce dossier</button>
+						</div>
+		    		</div>
+				</form>
+			@elseif($dossier->etatDossier === "En Attente")
+				<form action="/candidature/bloquer/{{$utilisateur->mel}}" method="post" class="section">
+					@method("patch")
+					{{ csrf_field() }}
+					<div class="field">
+		    			<div class="control">
+		    				<input type="hidden" name="mel" value="{{$utilisateur->mel}}">
+							<button class="button is-danger is-big" type="submit">Bloquer ce dossier</button>
+						</div>
+		    		</div>
+				</form>
+			@endif
 		@endif
 	</div>
 <script>

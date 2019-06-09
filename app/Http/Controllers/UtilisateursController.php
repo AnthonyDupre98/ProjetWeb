@@ -7,6 +7,7 @@ use App\Dossier;
 
 class UtilisateursController extends Controller
 {
+    //renvoie la vue avec tous les utilisateurs, leur mail et l'etat de le dossier
     public function liste()
     {
     	$dossiers= [];

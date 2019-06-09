@@ -6,14 +6,12 @@ use App\Utilisateur;
 
 class InscriptionController extends Controller
 {
+    //renvoie au formulaire d'inscription d'un utilisateur
     public function formulaire(){
-    	if (auth()->guest()){
     	return view('inscription');
-    	}
-    	flash("Vous êtes déjà connecté(e)")->warning();
-    	return redirect('mon-compte');
     }
 
+    //permet d'ajouter les données du formulaire a la table utilisateurs
     public function traitement(){
     	request()->validate([
 		'email' => ['required', 'email'],

@@ -10,6 +10,7 @@
         <div class="section">
             <form action="/modification-mot-de-passe" method="post" class="section">
             	{{ csrf_field() }}
+                @method("patch")
 
             	<div class="field">
         			<label class="label">Nouveau mot de passe : </label>

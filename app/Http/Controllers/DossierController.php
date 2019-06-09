@@ -7,7 +7,7 @@ use App\Utilisateur;
 
 class DossierController extends Controller
 {
-
+    //renvoie la vue du dossier cote utilisateur
 	public function voirDossier(){
     	$mel = request('mel');
 
@@ -24,6 +24,7 @@ class DossierController extends Controller
     	]);
     }
 
+    //permet d'ajouter les données du formulaire a la table dossiers
 	public function dossier(){
 		request()->validate([
 		    'resultatBac' => ['required', 'image'],
@@ -57,14 +58,16 @@ class DossierController extends Controller
 		return back();
     }
 
+    //permet de supprimer un dossier cote utilisateur
     public function supprimer(){
-    	$dossier = Dossier::where("idUtilisateur", auth()->id());
+    	$dossier = Dossier::where("idUtilisateur", auth()->id())->firstOrFail();
 		$dossier->delete();
 
 		flash("Votre dossier a été supprimé.")->success();
 		return back();
     }
 
+    //renvoie la vue d'une candidature cote admin
     public function candidature(){
     	$mel = request('mel');
     	$utilisateur = Utilisateur::where('mel', $mel)->firstOrFail();
@@ -80,6 +83,18 @@ class DossierController extends Controller
     	]);
     }
 
+    //permet a un admin de bloquer le dossier d'un utilisateur
+    public function bloquerCandidature(){
+        $mel = request('mel');
+        $utilisateur = Utilisateur::where("mel", $mel)->firstOrFail();
+
+        Dossier::where('idUtilisateur', $utilisateur->idUtilisateur)->update([
+            'etatDossier' => "En cours d'instruction",
+        ]);
+        return back();
+    }
+
+    //change l'etat du dossier a supprime
     public function supprimerCandidature(){
         $mel = request('mel');
         $utilisateur = Utilisateur::where("mel", $mel)->firstOrFail();
@@ -90,6 +105,7 @@ class DossierController extends Controller
         return back();
     }
 
+    //change l'etat du dossier a refuse
     public function refuserCandidature(){
         $mel = request('mel');
         $utilisateur = Utilisateur::where("mel", $mel)->firstOrFail();

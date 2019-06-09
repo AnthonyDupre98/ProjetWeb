@@ -21,7 +21,7 @@
                             <a class="navbar-item" href="/">
                                 <h1>Candidatech</h1>
                             </a>
-                            <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+                            <span id="nav-toggle" class="navbar-burger burger" data-target="navbarMenuHeroA">
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -30,6 +30,11 @@
                         <div id="navbarMenuHeroA" class="navbar-menu">
                             <div class="navbar-end">
                                 @include('partials.navbar-item', ['lien' => '/', 'texte' => 'Accueil'])
+                                @if (auth()->guard('admin')->check())
+                                    @if (auth()->guard('admin')->user()->superAdmin)
+                                        @include('partials.navbar-item', ['lien' => 'formulaire-admin', 'texte' => 'Ajouter un admin'])
+                                    @endif
+                                @endif
                                 @if (auth()->guard('admin')->check())
                                     @include('partials.navbar-item', ['lien' => 'mon-compte-admin', 'texte' => 'Mon Compte'])
                                     @include('partials.navbar-item', ['lien' => 'utilisateurs', 'texte' => 'Utilisateurs'])
@@ -54,7 +59,7 @@
                 </nav>
             </div>
 
-                    <!-- Hero content: will be in the middle -->
+            <!-- Hero content: will be in the middle -->
             <div class="hero-body">
                 <div class="container">
                 @include('flash::message')
@@ -75,5 +80,17 @@
                 </nav>
             </div>
         </section>
+        <script type="text/javascript">
+            document.getElementById("nav-toggle").addEventListener ("click", toggleNav);
+            function toggleNav() {
+                var nav = document.getElementById("navbarMenuHeroA");
+                var className = nav.getAttribute("class");
+                if(className == "nav-right navbarMenuHeroA") {
+                    nav.className = "nav-right navbarMenuHeroA is-active";
+                } else {
+                    nav.className = "nav-right navbarMenuHeroA";
+                }
+            }
+        </script>
     </body>
 </html>

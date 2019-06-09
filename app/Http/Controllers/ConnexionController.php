@@ -6,14 +6,12 @@ use Illuminate\Http\Request;
 
 class ConnexionController extends Controller
 {
+    //renvoie au formulaire de connexion d'un utilisateur ou d'un admin
     public function formulaire(){
-    	if (auth()->guest()){
         return view('connexion');
-        }
-        flash("Vous êtes déjà connecté(e).")->warning();
-        return redirect('mon-compte');
     }
 
+    //permet de connecter un utilisateur ou un admin
     public function traitement(){
     	request()->validate([
     		'email' => ['required', 'email'],

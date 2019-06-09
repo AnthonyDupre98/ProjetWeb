@@ -19,24 +19,32 @@ Route::get('/contacts', function () {
     return view('contacts');
 });
 
-Route::get('/inscription', 'InscriptionController@formulaire');
-Route::post('/inscription', 'InscriptionController@traitement');
+Route::group([
+	'middleware' => 'App\Http\Middleware\Guest',
+], function(){
+	Route::get('/inscription', 'InscriptionController@formulaire');
+	Route::post('/inscription', 'InscriptionController@traitement');
 
-Route::get('/connexion', 'ConnexionController@formulaire');
-Route::post('/connexion', 'ConnexionController@traitement');
+	Route::get('/connexion', 'ConnexionController@formulaire');
+	Route::post('/connexion', 'ConnexionController@traitement');
+});
 
 Route::group([
 	'middleware' => 'App\Http\Middleware\Admin',
 ], function(){
 	Route::get('/mon-compte-admin', 'CompteController@compteAdmin');
 	Route::get('/deconnexion-admin', 'CompteController@deconnexionAdmin');
-	Route::patch('/modification-mot-de-passe', 'CompteController@modificationMotDePasse');
+	Route::patch('/modification-mot-de-passe-admin', 'CompteController@modificationMotDePasseAdmin');
 
 	Route::get('/utilisateurs', 'UtilisateursController@liste');
 
 	Route::get('/candidature/{mel}', 'DossierController@candidature');
+	Route::patch('/candidature/bloquer/{mel}', 'DossierController@bloquerCandidature');	
 	Route::patch('/candidature/supprimer/{mel}', 'DossierController@supprimerCandidature');
 	Route::patch('/candidature/refuser/{mel}', 'DossierController@refuserCandidature');
+
+	Route::get('/formulaire-admin', 'AdminController@formulaireAdmin');
+	Route::post('/formulaire-admin', 'AdminController@ajouterAdmin');
 });
 
 Route::group([
