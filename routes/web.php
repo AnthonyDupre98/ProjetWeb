@@ -30,11 +30,13 @@ Route::group([
 ], function(){
 	Route::get('/mon-compte-admin', 'CompteController@compteAdmin');
 	Route::get('/deconnexion-admin', 'CompteController@deconnexionAdmin');
-	Route::post('/modification-mot-de-passe', 'CompteController@modificationMotDePasse');
+	Route::patch('/modification-mot-de-passe', 'CompteController@modificationMotDePasse');
 
 	Route::get('/utilisateurs', 'UtilisateursController@liste');
 
 	Route::get('/candidature/{mel}', 'DossierController@candidature');
+	Route::patch('/candidature/supprimer/{mel}', 'DossierController@supprimerCandidature');
+	Route::patch('/candidature/refuser/{mel}', 'DossierController@refuserCandidature');
 });
 
 Route::group([
@@ -42,7 +44,7 @@ Route::group([
 ], function(){
 	Route::get('/mon-compte', 'CompteController@compte');
 	Route::get('/deconnexion', 'CompteController@deconnexion');
-	Route::post('/modification-mot-de-passe', 'CompteController@modificationMotDePasse');
+	Route::patch('/modification-mot-de-passe', 'CompteController@modificationMotDePasse');
 	
 	Route::get('/{mel}', 'DossierController@voirDossier');
 	Route::post('/{mel}', 'DossierController@dossier');

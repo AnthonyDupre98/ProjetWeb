@@ -67,9 +67,9 @@
                 <nav class="tabs">
                     <div class="container">
                         <ul>
-                            <li><a class="navbar-item" href="/inscription">Étudiant</a></li>
-                            <li><a class="navbar-item" href="/inscription">Enseignant</a></li>
-                            <li><a class="navbar-item" href="/contacts">Contacts</a></li>
+                            <li><a class="navbar-item" href="/connexion">Étudiant</a></li>
+                            <li><a class="navbar-item" href="/connexion">Enseignant</a></li>
+                            <li><a class="navbar-item" href="http://www.polytech-reseau.org/index.php?id=68&tipUrl=http%3A%2F%2Fwww.polytech-reseau.org%2F%3Fid%3D496">Contacts</a></li>
                         </ul>
                     </div>
                 </nav>

@@ -5,13 +5,6 @@
         <h1>Mon compte</h1>
         <div class="section">
                 <p>Adresse e-mail : {{$utilisateur->mel}}</p>
-                <p>Nom : {{$utilisateur->nomUtilisateur}}</p>
-                <p>Prénom: {{$utilisateur->prenomUtilisateur}}</p>
-                <p>Date de naissance: {{$utilisateur->dateNaissance}}</p>
-                <p>Genre : {{$utilisateur->genre}}</p>
-                <p>Ville de naissance : {{$utilisateur->villeNaissance}}</p>
-                <p>Adresse actuelle : {{$utilisateur->adresseActuelle}}</p>
-                <p>Code postal : {{$utilisateur->codePostal}}</p>
         </div>
         <h1>Changer mon mot de passe</h1>
         <div class="section">

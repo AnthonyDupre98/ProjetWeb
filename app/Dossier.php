@@ -8,6 +8,6 @@ class Dossier extends Model
 {
     protected $primaryKey ='idDossier';
 
-	protected $fillable = ['idUtilisateur', 'resultatBac','carteDidentite', 'etatDossier'];
+	protected $fillable = ['idUtilisateur', 'resultatBac','carteDidentite', 'etatDossier', 'prenomUtilisateur','nomUtilisateur','dateNaissance','genre', 'villeNaissance', 'adresseActuelle', 'codePostal'];
 
 }

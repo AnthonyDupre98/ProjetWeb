@@ -6,14 +6,35 @@
     <div class="notification">
     	<h1>Dossier déposé : </h1>
         
-        <form action="/{mel}" method="post" class="section" enctype="multipart/form-data">
+        <form action="/candidature/{{$utilisateur->mel}}" method="post" class="section" enctype="multipart/form-data">
         	{{ csrf_field() }}
         	<div class="section">
+        		<div class="field">
+	    			<label class="label">Informations : </label>
+	        	</div>
+    			@if($dossier != null)
+	                <p>Nom : {{$dossier->nomUtilisateur}}</p>
+	                <p>Prénom: {{$dossier->prenomUtilisateur}}</p>
+	                <p>Date de naissance: {{$dossier->dateNaissance}}</p>
+	                <p>Genre : {{$dossier->genre}}</p>
+	                <p>Ville de naissance : {{$dossier->villeNaissance}}</p>
+	                <p>Adresse actuelle : {{$dossier->adresseActuelle}}</p>
+	                <p>Code postal : {{$dossier->codePostal}}</p>
+	         	@else
+	                <p>Nom : N/A</p>
+	                <p>Prénom: N/A</p>
+	                <p>Date de naissance: N/A</p>
+	                <p>Genre : N/A</p>
+	                <p>Ville de naissance : N/A</p>
+	                <p>Adresse actuelle : N/A</p>
+	                <p>Code postal : N/A</p>
+	                <p>SuperAdmin : N/A</p>
+	        	@endif
+	        	<br>
 	        	<div class="field">
 	    			<label class="label">Notes du BAC : </label>
 	        	</div>
 	        	@if($dossier != null)
-		        	<label class="label">Fichier sauvegardé : </label>
 		        	<img id="myImg" src="/storage/{{ $dossier->resultatBac }}" alt="Résultat de bac" style="width:100%;max-width:350px">
 		        	<div id="myModal" class="modal">
 						<span class="close">&times;</span>
@@ -23,32 +44,43 @@
 				@else
 					<p>Aucun fichier n'a été déposé.</p>
 	        	@endif
-        	</div>
-
-        	<div class="section">
+	        	<br>
+	        	<br>
+        	
 	        	<div class="field">
 	    			<label class="label">Carte d'identité : </label>
 	        	</div>
 	        	@if($dossier != null)
-	        		<label class="label">Fichier sauvegardé : </label>
-    				<a href="/storage/{{ $dossier->carteDidentite }}"><img src="/storage/{{ $dossier->carteDidentite }}" alt="Résultat de bac" style="width:100%;max-width:350px"></a>
-    			@else
+					<a href="/storage/{{ $dossier->carteDidentite }}"><img src="/storage/{{ $dossier->carteDidentite }}" alt="Résultat de bac" style="width:100%;max-width:350px"></a>
+				@else
 					<p>Aucun fichier n'a été déposé.</p>
 		        @endif
-	        </div>
-
-        	<div class="section">
-    		@if($dossier != null)
-	    		<label class="label">État du dossier : </label>
-        		<p>{{ $dossier->etatDossier }}</p>
-    		@endif
+		    
+	        	<div class="section">
+	    		@if($dossier != null)
+		    		<label class="label">État du dossier : </label>
+	        		<p>{{ $dossier->etatDossier }}</p>
+	    		@endif
+	    		</div>
     		</div>
     	</form>
         @if($dossier != null)
-			<form action="/candidature/{mel}" method="post" class="section">
+			<form action="/candidature/supprimer/{{$utilisateur->mel}}" method="post" class="section">
+				@method("patch")
+				{{ csrf_field() }}
 				<div class="field">
 	    			<div class="control">
+	    				<input type="hidden" name="mel" value="{{$utilisateur->mel}}">
 						<button class="button is-danger is-big" type="submit">Supprimer ce dossier</button>
+					</div>
+	    		</div>
+			</form>
+			<form action="/candidature/refuser/{{$utilisateur->mel}}" method="post" class="section">
+				@method("patch")
+				{{ csrf_field() }}
+				<div class="field">
+	    			<div class="control">
+	    				<input type="hidden" name="mel" value="{{$utilisateur->mel}}">
 						<button class="button is-danger is-big" type="submit">Refuser ce dossier</button>
 					</div>
 	    		</div>

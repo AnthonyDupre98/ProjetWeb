@@ -28,6 +28,12 @@ class DossierController extends Controller
 		request()->validate([
 		    'resultatBac' => ['required', 'image'],
 		    'carteDidentite' => ['required', 'image'],
+            'prenom' => ['required', 'string'],
+            'nom' => ['required', 'string'],
+            'datenaissance' => ['required'],
+            'villenaissance' => ['required', 'string'],
+            'adresseactuelle' => ['required', 'string'],
+            'codepostal' => ['required', 'integer'],
 		]);
 
 		$path1 = request('resultatBac')->store('resultatsBac', 'public');
@@ -38,6 +44,13 @@ class DossierController extends Controller
 			['resultatBac' => $path1,
 			'carteDidentite' => $path2,
 			'etatDossier' => 'En Attente',
+            'prenomUtilisateur' => request('prenom'),
+            'nomUtilisateur' => request('nom'),
+            'dateNaissance' => request('datenaissance'),
+            'genre' => request('genre'),
+            'villeNaissance' => request('villenaissance'),
+            'adresseActuelle' => request('adresseactuelle'),
+            'codePostal' => request('codepostal'),
 		]);	
 
 		flash("Votre dossier a été mis à jour.")->success();
@@ -65,5 +78,25 @@ class DossierController extends Controller
     		'utilisateur' => $utilisateur,
             'dossier' => $dossier,
     	]);
+    }
+
+    public function supprimerCandidature(){
+        $mel = request('mel');
+        $utilisateur = Utilisateur::where("mel", $mel)->firstOrFail();
+
+        Dossier::where('idUtilisateur', $utilisateur->idUtilisateur)->update([
+            'etatDossier' => "Supprimé",
+        ]);
+        return back();
+    }
+
+    public function refuserCandidature(){
+        $mel = request('mel');
+        $utilisateur = Utilisateur::where("mel", $mel)->firstOrFail();
+
+        Dossier::where('idUtilisateur', $utilisateur->idUtilisateur)->update([
+            'etatDossier' => "Refusé",
+        ]);
+        return back();
     }
 }

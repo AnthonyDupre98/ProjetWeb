@@ -15,13 +15,6 @@ class CreateUtilisateursTable extends Migration
     {
         Schema::create('utilisateurs', function (Blueprint $table) {
             $table->bigIncrements('idUtilisateur');
-            $table->string('prenomUtilisateur', 100);
-            $table->string('nomUtilisateur', 100);
-            $table->date('dateNaissance');
-            $table->char('genre');
-            $table->string('villeNaissance');
-            $table->string('adresseActuelle');
-            $table->integer('codePostal');
             $table->string('mel')->unique();
             $table->string('motDePasse');
             $table->timestamps();

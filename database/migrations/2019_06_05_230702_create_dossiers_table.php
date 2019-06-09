@@ -19,6 +19,13 @@ class CreateDossiersTable extends Migration
             $table->string('resultatBac')->nullable();
             $table->string('carteDidentite')->nullable();
             $table->string('etatDossier');
+            $table->string('prenomUtilisateur');
+            $table->string('nomUtilisateur');
+            $table->date('dateNaissance');
+            $table->char('genre');
+            $table->string('villeNaissance');
+            $table->string('adresseActuelle');
+            $table->integer('codePostal');
             $table->timestamps();
         });
     }

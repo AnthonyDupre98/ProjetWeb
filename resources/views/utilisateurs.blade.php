@@ -4,7 +4,7 @@
     <div class="notification">
         <div class="section">
             <h1>Liste des utilisateurs</h1>
-            </br>
+            <br>
             <table class="table" id="myTable">
                 <thead>
                     <tr>
@@ -26,8 +26,18 @@
                     <p hidden>{{ $i = 0 }}</p>
                     @foreach($utilisateurs as $utilisateur)
                     <tr>
-                        <td>{{ $utilisateur -> nomUtilisateur }}</td>
-                        <td>{{ $utilisateur -> prenomUtilisateur }}</td>
+                        <td>@if($dossiers[$i] === null)
+                                N/A
+                            @else
+                                {{ $dossiers[$i] -> nomUtilisateur }}
+                            @endif
+                        </td>
+                        <td>@if($dossiers[$i] === null)
+                                N/A
+                            @else
+                                {{ $dossiers[$i] -> prenomUtilisateur }}
+                            @endif
+                        </td>
                         <td><a href="/candidature/{{ $utilisateur -> mel }}">{{ $utilisateur -> mel }}</a></td>
                         <td>
                             @if($dossiers[$i] === null)
