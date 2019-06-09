@@ -12,7 +12,7 @@
 
     </head>
     <body>
-        <section class="hero is-primary is-medium">
+        <section class="hero is-primary is-medium is-fullwidth">
             <!-- Hero head: will stick at the top -->
             <div class="hero-head">
                 <nav class="navbar">
