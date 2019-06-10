@@ -28,8 +28,8 @@ class DossierController extends Controller
     //permet d'ajouter les données du formulaire a la table dossiers
 	public function dossier(){
 		request()->validate([
-		    'resultatBac' => ['required', 'image'],
-		    'carteDidentite' => ['required', 'image'],
+		    'resultatBac' => ['required', 'file'],
+		    'carteDidentite' => ['required', 'file'],
             'prenom' => ['required', 'string'],
             'nom' => ['required', 'string'],
             'datenaissance' => ['required'],
@@ -39,9 +39,9 @@ class DossierController extends Controller
 		]);
 		
 		if (Dossier::where("idUtilisateur", auth()->id())->exists()){
-		$dossier = Dossier::where("idUtilisateur", auth()->id())->firstOrFail();
-		unlink(storage_path('app/public/'.$dossier->resultatBac));
-    	unlink(storage_path('app/public/'.$dossier->carteDidentite));	
+			$dossier = Dossier::where("idUtilisateur", auth()->id())->firstOrFail();
+			unlink(storage_path('app/public/'.$dossier->resultatBac));
+	    	unlink(storage_path('app/public/'.$dossier->carteDidentite));	
 		}
 
 		$path1 = request('resultatBac')->store('resultatsBac', 'public');

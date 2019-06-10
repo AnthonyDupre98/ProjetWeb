@@ -154,16 +154,18 @@
 		    	</div>
 
 	    		<h1>Déposer vos fichiers : </h1>
-	    		<p>(formats acceptés : jpeg, png, bmp, gif, ou svg)</p>
+	    		<p>(taille du fichier max. 1 Mo)</p>
 	        	<div class="section">
 		        	<div class="field">
 		    			<label class="label">Notes du BAC : </label>
 		    			@if ($dossier === null)
 			        		<div class="control">
+			        			<input type="hidden" name="MAX_FILE_SIZE" value="1048576">
 		    					<input class="input" type="file" name="resultatBac" value="{{ old('resultatBac')}}">
 		    				</div>
 	    				@elseif ($dossier->etatDossier === "En Attente")
 		    				<div class="control">
+		    					<input type="hidden" name="MAX_FILE_SIZE" value="1048576">
 		    					<input class="input" type="file" name="resultatBac" value="{{ old('resultatBac')}}">
 		    				</div>
 						@endif
@@ -173,12 +175,7 @@
 		        	</div>
 		        	@if($dossier != null)
 		        	<label class="label">Fichier sauvegardé : </label>
-		        	<img id="myImg" src="/storage/{{ $dossier->resultatBac }}" alt="Résultat de bac" style="width:100%;max-width:350px">
-		        	<div id="myModal" class="modal">
-						<span class="close">&times;</span>
-						<img class="modal-content" id="img01">
-						<div id="caption"></div>
-					</div>
+			        	<p><a href="/storage/{{ $dossier->resultatBac }}" target="_blank"><img src="/storage/{{ $dossier->resultatBac }}" alt="Résultat de BAC" style="width:100%;max-width:350px"></a></p>
 		        	@endif
 	        	</div>
 
@@ -187,10 +184,12 @@
 		    			<label class="label">Carte d'identité : </label>
 		    			@if ($dossier === null)
 			        		<div class="control">
+			        			<input type="hidden" name="MAX_FILE_SIZE" value="1048576">
 		    					<input class="input" type="file" name="carteDidentite" value="{{ old('carteDidentite')}}">
 		    				</div>
 	    				@elseif ($dossier->etatDossier === "En Attente")
 		    				<div class="control">
+		    					<input type="hidden" name="MAX_FILE_SIZE" value="1048576">
 		    					<input class="input" type="file" name="carteDidentite" value="{{ old('carteDidentite')}}">
 		    				</div>
 						@endif
@@ -200,7 +199,7 @@
 		        	</div>
 		        	@if($dossier != null)
 		        	<label class="label">Fichier sauvegardé : </label>
-	    				<a href="/storage/{{ $dossier->carteDidentite }}"><img src="/storage/{{ $dossier->carteDidentite }}" alt="Carte d'identité" style="width:100%;max-width:350px"></a>
+	    				<p><a href="/storage/{{ $dossier->carteDidentite }}" target="_blank"><img src="/storage/{{ $dossier->carteDidentite }}" alt="Carte d'identité" style="width:100%;max-width:350px"></a></p>
 			        @endif
 		        </div>
 		        @if ($dossier === null)
@@ -248,26 +247,4 @@
 			@endif
 	</div>
 	@endif
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg");
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
-</script>
 @endsection
