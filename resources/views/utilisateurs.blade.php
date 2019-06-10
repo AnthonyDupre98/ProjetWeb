@@ -39,7 +39,7 @@
                                     {{ $dossiers[$i] -> prenomUtilisateur }}
                                 @endif
                             </td>
-                            <td><a href="/candidature/{{ $utilisateur -> mel }}">{{ $utilisateur -> mel }}</a></td>
+                            <td><a href="{{url('/candidature/'.$utilisateur -> mel)}}">{{ $utilisateur -> mel }}</a></td>
                             <td>
                                 @if($dossiers[$i] === null)
                                     Vide

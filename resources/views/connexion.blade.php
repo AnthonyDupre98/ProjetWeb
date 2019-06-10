@@ -3,7 +3,7 @@
 @section('contenu')
 	<div class="notification">
 	<h1>Connexion</h1>
-    <form action="/connexion" method="post" class="section">
+    <form action="{{url('/connexion')}}" method="post" class="section">
     	{{ csrf_field() }}
 
 		<div class="field">

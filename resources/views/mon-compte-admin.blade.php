@@ -16,7 +16,7 @@
         </div>
         <h1>Changer mon mot de passe</h1>
         <div class="section">
-            <form action="/modification-mot-de-passe-admin" method="post" class="section">
+            <form action="{{url('/modification-mot-de-passe-admin')}}" method="post" class="section">
             	{{ csrf_field() }}
                 @method("patch")
 

@@ -10,12 +10,12 @@
 				</div>
 			</nav>
 			@if (auth()->guard('admin')->check())
-				<a class="button is-link is-outlined" href="/utilisateurs">Consulter les candidatures</a>
+				<a class="button is-link is-outlined" href="{{url('/utilisateurs')}}">Consulter les candidatures</a>
 
 			@elseif (auth()->check())
-				<a class="button is-link is-outlined" href="/{{auth()->user()->mel}}">Je dépose ma candidature !</a>
+				<a class="button is-link is-outlined" href="{{url('/'.auth()->user()->mel)}}">Je dépose ma candidature !</a>
 			@else
-				<a class="button is-link is-outlined" href="/{mel}">Je dépose ma candidature !</a>
+				<a class="button is-link is-outlined" href="{{url('/mel')}}">Je dépose ma candidature !</a>
 			@endif
 		</div>
 @endsection

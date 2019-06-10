@@ -6,7 +6,7 @@
     @if (auth()->check() AND (auth()->user()->idUtilisateur === $utilisateur->idUtilisateur))
     <div class="notification">
     	<div class="field">
-    		<form action="/{{ $utilisateur->mel }}" method="post" class="section" enctype="multipart/form-data">
+    		<form action="{{url('/ $utilisateur->mel ')}}" method="post" class="section" enctype="multipart/form-data">
 	    		{{ csrf_field() }}
 	    		<h1>Rentrez vos informations : </h1>
 	    		<div class="field">
@@ -175,7 +175,7 @@
 		        	</div>
 		        	@if($dossier != null)
 		        	<label class="label">Fichier sauvegardé : </label>
-			        	<p><a href="/storage/{{ $dossier->resultatBac }}" target="_blank"><img src="/storage/{{ $dossier->resultatBac }}" alt="Résultat de BAC" style="width:100%;max-width:350px"></a></p>
+			        	<p><a href="{{url('/storage/'.$dossier->resultatBac)}}" target="_blank"><img src="{{url('/storage/'.$dossier->resultatBac)}}" alt="Résultat de BAC" style="width:100%;max-width:350px"></a></p>
 		        	@endif
 	        	</div>
 
@@ -199,7 +199,7 @@
 		        	</div>
 		        	@if($dossier != null)
 		        	<label class="label">Fichier sauvegardé : </label>
-	    				<p><a href="/storage/{{ $dossier->carteDidentite }}" target="_blank"><img src="/storage/{{ $dossier->carteDidentite }}" alt="Carte d'identité" style="width:100%;max-width:350px"></a></p>
+	    				<p><a href="{{url('/storage/'.$dossier->carteDidentite)}}" target="_blank"><img src="{{url('/storage/'.$dossier->carteDidentite)}}" alt="Carte d'identité" style="width:100%;max-width:350px"></a></p>
 			        @endif
 		        </div>
 		        @if ($dossier === null)
@@ -234,7 +234,7 @@
 	    	</form>
 	        @if($dossier != null)
 	        	@if ($dossier->etatDossier === "En Attente")
-					<form action="/{{ $utilisateur->mel }}" method="post" class="section" enctype="multipart/form-data">
+					<form action="{{url('/ $utilisateur->mel ')}}" method="post" class="section" enctype="multipart/form-data">
 						@method("delete")
 						{{ csrf_field() }} 
 						<div class="field">

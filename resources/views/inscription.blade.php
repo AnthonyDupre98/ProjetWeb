@@ -3,7 +3,7 @@
 @section('contenu')
 	<div class="notification">
 		<h1>Formulaire d'inscription</h1>
-	    <form action="/inscription" method="post" class="section">
+	    <form action="{{url('/inscription')}}" method="post" class="section">
 	    	{{ csrf_field() }}
 
 			<div class="field">

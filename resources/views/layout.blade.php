@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="fr-fr">
     <head>
-        <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="{{url('/css/reset.css')}}" />
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Candidatech</title>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css" />
-        <link rel="stylesheet" type="text/css" href="/css/monstyle.css" />
+        <link rel="stylesheet" type="text/css" href="{{url('/css/monstyle.css')}}" />
 
     </head>
     <body>
@@ -18,7 +18,7 @@
                 <nav class="navbar">
                     <div class="container">
                         <div class="navbar-brand">
-                            <a class="navbar-item" href="/">
+                            <a class="navbar-item" href="{{url('/')}}">
                                 <h1>Candidatech</h1>
                             </a>
                             <span id="nav-toggle" class="navbar-burger burger" data-target="navbarMenuHeroA">
@@ -72,8 +72,8 @@
                 <nav class="tabs">
                     <div class="container">
                         <ul>
-                            <li><a class="navbar-item" href="/connexion">Étudiant</a></li>
-                            <li><a class="navbar-item" href="/connexion">Enseignant</a></li>
+                            <li><a class="navbar-item" href="{{url('/connexion')}}">Étudiant</a></li>
+                            <li><a class="navbar-item" href="{{url('/connexion')}}">Enseignant</a></li>
                             <li><a class="navbar-item" href="http://www.polytech-reseau.org/index.php?id=68&tipUrl=http%3A%2F%2Fwww.polytech-reseau.org%2F%3Fid%3D496">Contacts</a></li>
                         </ul>
                     </div>
