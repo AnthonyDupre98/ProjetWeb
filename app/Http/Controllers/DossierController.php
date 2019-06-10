@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Dossier;
 use App\Utilisateur;
+use Storage;
 
 class DossierController extends Controller
 {
@@ -36,6 +37,12 @@ class DossierController extends Controller
             'adresseactuelle' => ['required', 'string'],
             'codepostal' => ['required', 'integer'],
 		]);
+		
+		if (Dossier::where("idUtilisateur", auth()->id())->exists()){
+		$dossier = Dossier::where("idUtilisateur", auth()->id())->firstOrFail();
+		unlink(storage_path('app/public/'.$dossier->resultatBac));
+    	unlink(storage_path('app/public/'.$dossier->carteDidentite));	
+		}
 
 		$path1 = request('resultatBac')->store('resultatsBac', 'public');
 		$path2 = request('carteDidentite')->store('cartesDidentite', 'public');
@@ -61,6 +68,8 @@ class DossierController extends Controller
     //permet de supprimer un dossier cote utilisateur
     public function supprimer(){
     	$dossier = Dossier::where("idUtilisateur", auth()->id())->firstOrFail();
+    	unlink(storage_path('app/public/'.$dossier->resultatBac));
+    	unlink(storage_path('app/public/'.$dossier->carteDidentite));
 		$dossier->delete();
 
 		flash("Votre dossier a été supprimé.")->success();
