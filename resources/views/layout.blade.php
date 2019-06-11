@@ -72,8 +72,8 @@
                 <nav class="tabs">
                     <div class="container">
                         <ul>
-                            <li><a class="navbar-item" href="{{url('/connexion')}}">Étudiant</a></li>
-                            <li><a class="navbar-item" href="{{url('/connexion')}}">Enseignant</a></li>
+                            <li><a class="navbar-item" href="{{url('/mon-compte')}}">Étudiant</a></li>
+                            <li><a class="navbar-item" href="{{url('/mon-compte-admin')}}">Enseignant</a></li>
                             <li><a class="navbar-item" href="http://www.polytech-reseau.org/index.php?id=68&tipUrl=http%3A%2F%2Fwww.polytech-reseau.org%2F%3Fid%3D496">Contacts</a></li>
                         </ul>
                     </div>

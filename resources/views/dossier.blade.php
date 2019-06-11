@@ -9,6 +9,7 @@
     		<form action="{{url('/ $utilisateur->mel ')}}" method="post" class="section" enctype="multipart/form-data">
 	    		{{ csrf_field() }}
 	    		<h1>Rentrez vos informations : </h1>
+			<p>(Tous les champs sont obligatoires, vous pouvez modifier votre dossier tant que son état est "En Attente")</p>
 	    		<div class="field">
 					<label class="label">Prénom : </label>
 		    		@if ($dossier === null)
@@ -51,12 +52,12 @@
 					<label class="label">Date de naissance : </label>
 					@if ($dossier === null)
 			        	<div class="control">
-							<input class="input" type="date" name="datenaissance" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" min="1900-01-01" max="2019-01-01" value="{{ old('datenaissance')}}">
+							<input class="input" type="date" name="datenaissance" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" min="1900-01-01" max="2003-31-12" value="{{ old('datenaissance')}}">
 						</div>
 	    			@elseif ($dossier->etatDossier === "En Attente")
 		    			<p>{{ $dossier->dateNaissance }}</p>
 						<div class="control">
-							<input class="input" type="date" name="datenaissance" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" min="1900-01-01" max="2019-01-01" value="{{ old('datenaissance')}}">
+							<input class="input" type="date" name="datenaissance" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" min="1900-01-01" max="2003-12-31" value="{{ old('datenaissance')}}">
 						</div>
 					@else
 						<p>{{ $dossier->dateNaissance }}</p>
